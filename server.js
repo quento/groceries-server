@@ -46,6 +46,23 @@ app.get('/api/groceries', function (req, res) {
     });
 });
 
+// Get single item
+app.get('/api/groceries/:id', function (req, res) {
+    
+    console.log("List single grocery item..." + req.params.id);
+    
+    //use mongoose to get all groceries in the database
+    Grocery.findById({_id: req.params.id}, function (err, groceries) {
+
+        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+        if (err) {
+            res.send(err);
+        }
+
+        res.json(groceries); // return all groceries in JSON format
+    });
+});
+
 // Create a grocery Item
 app.post('/api/groceries', function (req, res) {
 
