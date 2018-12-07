@@ -6,8 +6,8 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var cors = require('cors');
 
-// Configuration
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/groceries");
+// Configuration formerly MONGODB_URI
+mongoose.connect(process.env.MONGOLAB_PINK_URI || "mongodb://localhost:27017/groceries");
 
 app.use(bodyParser.urlencoded({'extended': 'true'}));
 app.use(bodyParser.json());
@@ -51,15 +51,14 @@ app.get('/api/groceries/:id', function (req, res) {
     
     console.log("List single grocery item..." + req.params.id);
     
-    //use mongoose to get all groceries in the database
-    Grocery.findById({_id: req.params.id}, function (err, groceries) {
+    Grocery.findById({_id: req.params.id}, function (err, grocery) {
 
         // if there is an error retrieving, send the error. nothing after res.send(err) will execute
         if (err) {
             res.send(err);
         }
 
-        res.json(groceries); // return all groceries in JSON format
+        res.json(grocery); // return all groceries in JSON format
     });
 });
 
