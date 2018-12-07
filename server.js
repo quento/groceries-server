@@ -6,8 +6,8 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var cors = require('cors');
 
-// Configuration formerly MONGODB_URI
-mongoose.connect(process.env.MONGOLAB_PINK_URI || "mongodb://localhost:27017/groceries");
+// Configuration
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/groceries");
 
 app.use(bodyParser.urlencoded({'extended': 'true'}));
 app.use(bodyParser.json());
