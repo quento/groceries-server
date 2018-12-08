@@ -49,7 +49,7 @@ app.get('/api/groceries', function (req, res) {
 // Get single item
 app.get('/api/groceries/:id', function (req, res) {
     
-    console.log("List single grocery item..." + req.params.id);
+    console.log("List single grocery item...." + req.params.id);
     
     Grocery.findById({_id: req.params.id}, function (err, grocery) {
 
